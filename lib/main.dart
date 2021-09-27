@@ -31,7 +31,7 @@ class _RandomWordsState extends State<RandomWords> {
   final _suggestions = <WordPair>[];
   final _saved = <WordPair>{};
   final _biggerFont = const TextStyle(fontSize: 18.0);
-  bool _followIconColor = false;
+  bool _changeFollowIconColor = false;
 
   void _pushSaved() {
     Navigator.of(context).push(
@@ -77,7 +77,7 @@ class _RandomWordsState extends State<RandomWords> {
   }
 
   Widget _buildRow(WordPair pair) {
-    final saved = _saved.contains(pair);
+    final alreadySaved = _saved.contains(pair);
 
     return ListTile(
       title: Text(
@@ -85,12 +85,12 @@ class _RandomWordsState extends State<RandomWords> {
         style: _biggerFont,
       ),
       trailing: Icon(
-        saved ? Icons.favorite : null,
-        color: saved ? (_followIconColor ? Colors.pink : Colors.orange) : null,
+        alreadySaved ? Icons.favorite : Icons.favorite_border,
+        color: alreadySaved ? (_changeFollowIconColor ? Colors.pink : Colors.orange) : null,
       ),
       onTap: () {
         setState(() {
-          if (saved) {
+          if (alreadySaved) {
             _saved.remove(pair);
           } else {
             _saved.add(pair);
@@ -110,8 +110,8 @@ class _RandomWordsState extends State<RandomWords> {
           IconButton(
               onPressed: () {
                 setState(() {
-                  _followIconColor =
-                      !_followIconColor; // This change Container color
+                  _changeFollowIconColor =
+                      !_changeFollowIconColor;
                 });
               },
               icon: Icon(
