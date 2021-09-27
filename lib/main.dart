@@ -2,8 +2,6 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
 
@@ -112,7 +110,8 @@ class _RandomWordsState extends State<RandomWords> {
           IconButton(
               onPressed: () {
                 setState(() {
-                  _followIconColor = !_followIconColor; // This change Container color
+                  _followIconColor =
+                      !_followIconColor; // This change Container color
                 });
               },
               icon: Icon(
