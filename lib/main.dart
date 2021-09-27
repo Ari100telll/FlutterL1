@@ -64,7 +64,7 @@ class _RandomWordsState extends State<RandomWords> {
   Widget _buildSuggestions() {
     return ListView.builder(
         padding: const EdgeInsets.all(16.0),
-        itemBuilder: /*1*/ (context, i) {
+        itemBuilder: (context, i) {
           if (i.isOdd) return const Divider();
 
           final index = i ~/ 2;
