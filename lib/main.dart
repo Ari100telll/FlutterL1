@@ -33,7 +33,7 @@ class _RandomWordsState extends State<RandomWords> {
   final _suggestions = <WordPair>[];
   final _saved = <WordPair>{};
   final _biggerFont = const TextStyle(fontSize: 18.0);
-  bool _rowColor = false;
+  bool _followIconColor = false;
 
   void _pushSaved() {
     Navigator.of(context).push(
@@ -88,7 +88,7 @@ class _RandomWordsState extends State<RandomWords> {
       ),
       trailing: Icon(
         saved ? Icons.favorite : null,
-        color: saved ? (_rowColor ? Colors.pink : Colors.orange) : null,
+        color: saved ? (_followIconColor ? Colors.pink : Colors.orange) : null,
       ),
       onTap: () {
         setState(() {
@@ -112,7 +112,7 @@ class _RandomWordsState extends State<RandomWords> {
           IconButton(
               onPressed: () {
                 setState(() {
-                  _rowColor = !_rowColor; // This change Container color
+                  _followIconColor = !_followIconColor; // This change Container color
                 });
               },
               icon: Icon(
