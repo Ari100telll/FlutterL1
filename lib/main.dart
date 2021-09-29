@@ -31,6 +31,9 @@ class _RandomWordsState extends State<RandomWords> {
   final _suggestions = <WordPair>[];
   final _saved = <WordPair>{};
   final _biggerFont = const TextStyle(fontSize: 18.0);
+  final _colors = [Colors.pink, Colors.orange];
+  var _currentColor = 0;
+  // bool _changeFollowIconColor = false;
 
   void _pushSaved() {
     Navigator.of(context).push(
@@ -77,6 +80,7 @@ class _RandomWordsState extends State<RandomWords> {
 
   Widget _buildRow(WordPair pair) {
     final alreadySaved = _saved.contains(pair);
+
     return ListTile(
       title: Text(
         pair.asPascalCase,
@@ -84,7 +88,7 @@ class _RandomWordsState extends State<RandomWords> {
       ),
       trailing: Icon(
         alreadySaved ? Icons.favorite : Icons.favorite_border,
-        color: alreadySaved ? Colors.orange : null,
+        color: alreadySaved ? _colors[_currentColor] : null,
       ),
       onTap: () {
         setState(() {
@@ -105,6 +109,16 @@ class _RandomWordsState extends State<RandomWords> {
         title: const Text('Startup Name Generator'),
         actions: [
           IconButton(onPressed: _pushSaved, icon: Icon(Icons.list)),
+          IconButton(
+              onPressed: () {
+                setState(() {
+                  _currentColor = (_currentColor + 1) % _colors.length;
+                });
+              },
+              icon: Icon(
+                Icons.format_color_fill,
+                color: Colors.black,
+              )),
         ],
       ),
       body: _buildSuggestions(),
